@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Синхронизация инпутов</title>
+</head>
+<body>
+<header>
+    <a href="../index.html" style="display: block; padding: 30px 0;">Вернуться назад</a>
+</header>
+<p>Решение в коде страницы. откройте с помощью ctrl+U. Ниже представлены связанные инпуты. Можете попробовать повводить в них что-нибудь</p>
+
+<input type="text" id="input1">
+<input type="text" id="input2">
+
+<script>
+    var i1 = document.getElementById('input1');
+    var i2 = document.getElementById('input2');
+
+
+    function connectInputs(i1, i2){
+        i1.addEventListener('input', function(e){
+            i2.value = i1.value;
+        });
+
+        i2.addEventListener('input', function(e){
+            i1.value = i2.value;
+        });
+    }
+
+    connectInputs(i1, i2);
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Получить содержимое ячеек</title>
+    <style>
+        .row{
+            display: flex;
+            min-width: 600px;
+            max-width: 1600px;
+        }
+        .col{
+            flex-basis: 50%;
+            min-height: 20vh;
+            background-color: cadetblue;
+            border: 1px solid black;
+
+            box-shadow: 0px 0px 0px rgba(0,0,0,0);
+
+            transition-property: box-shadow;
+            transition-duration: 0.2s;
+        }
+
+        .col:hover{
+            box-shadow: 0px 0px 24px rgba(0,0,0,1);
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <a href="../index.html" style="display: block; padding: 30px 0;">Вернуться назад</a>
+</header>
+<div class="row">
+    <div class="col">1.1</div>
+    <div class="col">1.2</div>
+</div>
+<div class="row">
+    <div class="col">2.1</div>
+    <div class="col">2.2</div>
+</div>
+<p>
+    Содержимое ячейки по которой вы кликнули: <span id="cellContent"></span>
+</p>
+
+<script>
+    //выбираем все клеточки
+    var cells = document.querySelectorAll('.row .col');
+    //результат работы- nodelist. А хотелось бы применить метод forEach. Для этого трансформируем nodelist в array
+    cells = Array.prototype.slice.call(cells);
+
+    //на каждую клеточку
+    cells.forEach(function(cell){
+
+        //вешаем обработчик события на клик
+        cell.addEventListener('click', viewCellContent);
+    });
+
+    //находим элемент куда будем выводить содержимое ячейки
+    var cellContentSpan = document.getElementById('cellContent');
+    function viewCellContent(e){
+        //отлавливаем событие клика именно по ячейке (а не содержащимся внутри элементам)
+        if (e.target == this){
+            cellContentSpan.textContent = e.target.textContent;
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>
+    <a href="../index.html" style="display: block; padding: 30px 0;">Вернуться назад</a>
+</header>
+    <p>
+        Создать объект можно при помощи оператора new и функции-конструктора.
+    </p>
+    <pre>
+                function MyNewObj (name){
+                    this.foo = 'foo';
+                    this.bar = 'bar';
+                    this.name = name;
+                }
+
+                var myNewObj = new MyNewObj('test');
+            </pre>
+    <p>Либо простым способом, через {}</p>
+    <pre>
+                var myNewObjSimple = {
+                    foo = 'foo',
+                    bar = 'bar',
+                    name = 'name'
+                }
+            </pre>
+    <p>Наследование организовано при помощи прототипов.</p>
+    <pre>
+                //конструктор класса для родительского объекта
+                function ParObj(){
+                    this.str = 'str';
+                }
+                //создаем метод для прототипа родительского объекта
+                ParObj.prototype.method = function(){console.log("hi, I'm parent method")}
+
+                //в данном конструкторе создаем собственную переменную дочернего объекта, которая переписывает аналогичную из родительского
+                function ChildObj(){
+                    this.str = 'string from child';
+                }
+                // Прототип дочернего объекта будет ссылаться на прототип родительского. Таким образом мы наследуем метод method
+                ChildObj.prototype.__proto__ = ParObj.prototype;
+
+                //создаем дочерний объект
+                var ch = new ChildObj();
+                //вызываем родительский метод
+                ch.method();
+            </pre>
+    <p>Таким образом осуществляется наследование в js</p>
+    <p>реализовать чистые private перемененные нельзя. Во всяком случае я не знаю как это сделать. Есть несколько способов сделать что-то похожее на приватные переменные и методы.<br>
+        В функции-конструкторе класса можно здать переменную. Да и приватные метод тоже можно. С переменной же работать через геттер и сеттер заданный через this. Но не представляю чтобы такое решение было легко наследуемым.
+    </p>
+    <pre>
+
+    </pre>
+    <p>
+        Придется в конструкторе дочернего класса вызывать родительский конструктор с .apply(this, arguments). Что уже больше похоже на ООП в функциональном стиле, нежели прототипном.
+    </p>
+    <pre>
+        function ParObj(){
+
+            //создаем переменную в конструкторе
+			var priv = 2;
+            this.str = 'str';
+
+            //создаем сеттер
+		    this.setPriv = function(val){
+			    priv = val;
+            }
+            //создаем геттер
+		    this.getPriv = function(){
+				return priv;
+            }
+        }
+        ParObj.prototype.method = function(){console.log("hi, I'm parent method")}
+
+        function ChildObj(){
+
+            //Теперь чтобы создать аналогичную приватную переменную в дочернем объекте, вызываем конструктор родительского
+            ParObj.call(this);
+
+            this.str = 'string from child';
+        }
+        ChildObj.prototype.__proto__ = ParObj.prototype;
+    </pre>
+<footer>
+    <a href="../index.html" style="display: block; padding: 30px 0;">Вернуться назад</a>
+</footer>
+</body>
+</html>

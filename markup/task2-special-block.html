@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>блок с соответствующими стилями</title>
+
+    <style>
+        #special{
+            width: 50vw;
+            height: 60vh;
+            margin: auto;
+
+            padding: 4vh 6vw;
+
+            border-radius: 20px;
+            
+            box-shadow: 4px 4px 15px rgba( 0, 0, 0, 0.2);
+            background: linear-gradient(to bottom, #368ddc, #1b69af);
+
+            transition-property: opacity;
+            transition-duration: 0.8s;
+        }
+        #special:hover{
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <a href="../index.html" style="display: block; padding: 30px 0;">Вернуться назад</a>
+    <ol type="a">
+        <li>
+            Скругленные углы
+        </li>
+        <li>
+            Тень 15px черного цвета с прозрачностью 20%
+        </li>
+        <li>
+            Заливка градиентом, сверху вниз: #368ddc -> #1b69af;
+        </li>
+        <li>
+            При наведении на блок он плавно исчезает
+        </li>
+    </ol>
+</header>
+<div id="special">
+    особый блок
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Задание 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .row{
+            display: flex;
+            min-width: 600px;
+            max-width: 1600px;
+        }
+        .col{
+            flex-basis: 50%;
+            min-height: 20vh;
+            background-color: cadetblue;
+            border: 1px solid black;
+
+            box-shadow: 0px 0px 0px rgba(0,0,0,0);
+
+            transition-property: box-shadow;
+            transition-duration: 0.2s;
+        }
+
+        .col:hover{
+            box-shadow: 0px 0px 24px rgba(0,0,0,1);
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <a href="../index.html" style="display: block; padding: 30px 0;">Вернуться назад</a>
+</header>
+<div class="row">
+    <div class="col">ячейка 1</div>
+    <div class="col">ячейка 2</div>
+</div>
+<div class="row">
+    <div class="col">ячейка 1</div>
+    <div class="col">ячейка 2</div>
+</div>
+</body>
+</html>
